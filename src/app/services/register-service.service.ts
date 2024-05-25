@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import firebase from 'firebase/compat/app'; // This ensures we get the right types from firebase
+import firebase from 'firebase/compat/app';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,28 @@ export class RegisterService {
   async register(email: string, password: string, name: string) {
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      if (result.user === null) {
+        throw new Error("There has been an error with the registration")
+      }
+      await this.setUserData(result.user, name)
+      return result;
+    } catch (error:any) {
+      throw error;
+    }
+  }
+
+  async googleSignIn(name: string) {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const result = await this.afAuth.signInWithPopup(provider);
       if (result.user) {
         await this.setUserData(result.user, name);
       } else {
-        throw new Error('User registration failed');
+        throw new Error('Google sign-in failed');
       }
       return result;
     } catch (error) {
-      console.error("Error registering user", error);
+      console.error("Error during Google sign-in", error);
       throw error;
     }
   }
@@ -32,5 +47,37 @@ export class RegisterService {
       name: name
     };
     return userRef.set(userData, { merge: true });
+  }
+
+  private handleError(error: any) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.code) {
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          errorMessage = 'The email address is already in use by another account.';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'The email address is not valid.';
+          break;
+        case 'auth/operation-not-allowed':
+          errorMessage = 'Email/password accounts are not enabled.';
+          break;
+        case 'auth/weak-password':
+          errorMessage = 'The password is too weak.';
+          break;
+        case 'auth/user-disabled':
+          errorMessage = 'The user account has been disabled by an administrator.';
+          break;
+        case 'auth/user-not-found':
+          errorMessage = 'There is no user corresponding to the given email.';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'The password is invalid for the given email.';
+          break;
+        default:
+          errorMessage = 'An unknown error occurred!';
+          break;
+      }
+    }
   }
 }

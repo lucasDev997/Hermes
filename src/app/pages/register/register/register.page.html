@@ -10,7 +10,6 @@
       <ion-title size="large">Register</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -45,12 +44,12 @@
         <ion-button color="success" (click)="register()"><ion-text>Register</ion-text></ion-button>
       </ion-col>
       <ion-col size="3">
-        <ion-button color="danger"><ion-text>Clear</ion-text></ion-button>
+        <ion-button color="danger" (click)="clearInputs()"><ion-text>Clear</ion-text></ion-button>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-around ion-align-items-center margin-top-5">
       <ion-col size="8">
-        <ion-button expand="block" color="dark"><ion-text color="primary"><ion-icon name="logo-google" class="ion-float-left ion-padding-right"></ion-icon>Register with google</ion-text></ion-button>
+        <ion-button expand="block" color="dark" (click)="googleSignIn()"><ion-text color="primary"><ion-icon name="logo-google" class="ion-float-left ion-padding-right"></ion-icon>Register with google</ion-text></ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

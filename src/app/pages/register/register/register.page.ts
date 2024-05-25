@@ -13,6 +13,8 @@ export class RegisterPage {
   public password:string = ''
   public name:string = ''
 
+  public errorMessage: any = ''
+
   constructor(
     private registerService: RegisterService,
     private router:Router
@@ -22,8 +24,17 @@ export class RegisterPage {
     try {
       await this.registerService.register(this.email, this.password, this.name);
       this.router.navigate(['/login'])
+    } catch (error: any) {
+      throw error
+    }
+  }
+
+  async googleSignIn(){
+    try {
+      await this.registerService.googleSignIn(this.name)
+      this.router.navigate(['/tabs/tab1/'])
     } catch (error) {
-      console.error("Error registering user", error);
+      console.error("Error during Google sign-in", error);
       
     }
   }
@@ -32,4 +43,9 @@ export class RegisterPage {
     this.router.navigate(['/login'])
   }
 
+  clearInputs(){
+    this.email = ''
+    this.password = ''
+    this.name = ''
+  }
 }
