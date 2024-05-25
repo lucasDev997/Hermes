@@ -24,7 +24,7 @@ export class RegisterPage {
     try {
       await this.registerService.register(this.email, this.password, this.name);
       this.router.navigate(['/login'])
-    } catch (error: any) {
+    } catch (error) {
       throw error
     }
   }
