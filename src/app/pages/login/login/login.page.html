@@ -14,14 +14,14 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-input type="text" labelPlacement="floating">
+        <ion-input type="text" labelPlacement="floating" [(ngModel)]="email">
           <div slot="label">Email </div>
         </ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-input type="password" labelPlacement="floating">
+        <ion-input type="password" labelPlacement="floating" [(ngModel)]="password">
           <div slot="label">Password </div>
         </ion-input>
       </ion-col>
@@ -42,7 +42,7 @@
     </ion-row>
     <ion-row class="ion-justify-content-around">
       <ion-col size="3">
-        <ion-button color="success"><ion-text>Login</ion-text></ion-button>
+        <ion-button color="success" (click)="login()"><ion-text>Login</ion-text></ion-button>
       </ion-col>
       <ion-col size="3">
         <ion-button class="ion-padding-horizontal" color="danger"><ion-text>Clear</ion-text></ion-button>
@@ -50,7 +50,7 @@
     </ion-row>
     <ion-row class="ion-justify-content-around ion-align-items-center margin-top-5">
       <ion-col size="8">
-        <ion-button expand="block" color="dark"><ion-text color="primary"><ion-icon name="logo-google" class="ion-float-left ion-padding-right"></ion-icon> Login with google</ion-text></ion-button>
+        <ion-button expand="block" color="dark" (click)="loginWithGoogle()"><ion-text color="primary"><ion-icon name="logo-google" class="ion-float-left ion-padding-right"></ion-icon> Login with google</ion-text></ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
