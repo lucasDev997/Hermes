@@ -14,15 +14,22 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-input type="text" labelPlacement="floating">
+        <ion-input type="text" labelPlacement="floating" [(ngModel)]="email">
           <div slot="label">Email </div>
         </ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-input type="password" labelPlacement="floating">
+        <ion-input type="password" labelPlacement="floating" [(ngModel)]="password">
           <div slot="label">Password </div>
+        </ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input type="text" labelPlacement="floating" [(ngModel)]="name">
+          <div slot="label">Name </div>
         </ion-input>
       </ion-col>
     </ion-row>
@@ -35,7 +42,7 @@
     </ion-row>
     <ion-row class="ion-justify-content-around">
       <ion-col size="3">
-        <ion-button color="success"><ion-text>Register</ion-text></ion-button>
+        <ion-button color="success" (click)="register()"><ion-text>Register</ion-text></ion-button>
       </ion-col>
       <ion-col size="3">
         <ion-button color="danger"><ion-text>Clear</ion-text></ion-button>
