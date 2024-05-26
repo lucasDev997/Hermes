@@ -8,7 +8,7 @@ import firebase from 'firebase/compat/app'
 })
 export class LoginServicesService {
 
-  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) { }
+  constructor(private afAuth: AngularFireAuth) { }
 
   public async login(email: string, password: string){
     try {
