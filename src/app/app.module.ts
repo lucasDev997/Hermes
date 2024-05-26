@@ -14,6 +14,8 @@ import {AngularFireModule} from '@angular/fire/compat'
 import {AngularFireAuthModule} from '@angular/fire/compat/auth'
 import {AngularFireFunctionsModule} from '@angular/fire/compat/functions'
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore'
+import { MarketComponentModule } from './components/market-component/market-component.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {AngularFirestoreModule} from '@angular/fire/compat/firestore'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireFunctionsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MarketComponentModule,
+    HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
