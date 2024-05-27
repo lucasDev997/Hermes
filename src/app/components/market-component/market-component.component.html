@@ -18,17 +18,40 @@
 
   <ion-row *ngIf="marketData.length > 0">
     <ion-col size="12">
-      <ion-card *ngFor="let data of marketData">
-        <ion-card-header>
-          <ion-card-title>{{ data.name }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>ID: {{ data.id }}</p>
-          <p>Symbol: {{ data.symbol }}</p>
-          <p>Current Price: {{ data.current_price | currency }}</p>
-          <!-- Add more fields as needed -->
-        </ion-card-content>
-      </ion-card>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Market Cap</th>
+            <th>Price</th>
+            <th>7d%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let crypto of marketData; index as i">
+            <td>{{i}}</td>
+
+            <td>
+              <div>
+                <div class="coin_img">
+                  <img height="30" width="30" src={{crypto.image}}>
+                </div>
+                <div class="coin_mkc">
+                  <p class="ion-display-block">{{crypto.symbol | uppercase}}</p>
+                  <p class="ion-display-block">{{crypto.market_cap | abbreviateNumber}}</p>
+                </div>
+              </div>
+            </td>
+            <td>{{crypto.current_price | currency}}</td>
+
+            <td>
+              
+            </td>
+
+
+          </tr>
+        </tbody>
+      </table>
     </ion-col>
   </ion-row>
 </ion-grid>

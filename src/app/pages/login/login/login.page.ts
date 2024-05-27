@@ -21,7 +21,7 @@ export class LoginPage{
   async login(){
     try {
       await this.loginService.login(this.email, this.password)
-      this.router.navigate(['tabs/tab1'])
+      this.router.navigate(['tab1'])
     } catch (error) {
       throw error;
     }
@@ -30,7 +30,7 @@ export class LoginPage{
   async loginWithGoogle(){
     try {
       await this.loginService.loginWithGoogle()
-      this.router.navigate(['tabs/tab1'])
+      this.router.navigate(['tab1'])
     } catch (error) {
       throw error;
     }
