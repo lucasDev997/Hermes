@@ -11,12 +11,11 @@
       </ion-select>
     </ion-col>
     <ion-col size="12" class="ion-text-center">
-      <ion-button (click)="getMarketData()">Get Market Data</ion-button>
+      <ion-button (click)="fetchAllMarketData()">Get Market Data</ion-button>
     </ion-col>
-
   </ion-row>
 
-  <ion-row *ngIf="marketData.length > 0">
+  <ion-row *ngIf="paginatedData.length > 0">
     <ion-col size="12">
       <table>
         <thead>
@@ -24,42 +23,20 @@
             <th>#</th>
             <th>Market Cap</th>
             <th>Price</th>
-            <th>24h%</th>
+            <th>7d%</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let crypto of marketData; index as i">
-            <td style="text-align: center;">{{i + 1 + (page - 1) * 10}}</td>
-
-            <td>
-              <div>
-                <div class="coin_img">
-                  <img height="30" width="30" src={{crypto.image}}>
-                </div>
-                <div class="coin_mkc">
-                  <p class="ion-display-block">{{crypto.symbol | uppercase}}</p>
-                  <p class="ion-display-block">{{crypto.market_cap | abbreviateNumber}}</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p>{{crypto.current_price | currency}}</p>
-            </td>
-
-            <td>
-              <p [ngStyle]="{color: isValuePositive(crypto.price_change_percentage_24h) ? 'green' : 'red'}">{{crypto.price_change_percentage_24h | porcentageValue}}</p>
-            </td>
-
-
-          </tr>
+          <!-- <app-crypto-row *ngFor="let crypto of paginatedData; index as i" [crypto]="crypto" [index]="i" [page]="page" [itemsPerPage]="itemsPerPage"></app-crypto-row> -->
         </tbody>
       </table>
     </ion-col>
   </ion-row>
-  <ion-row class="ion-align-items-center ion-justify-content-center" *ngIf="marketData.length > 0">
+
+  <ion-row class="ion-align-items-center ion-justify-content-center" *ngIf="paginatedData.length > 0">
     <ion-col size="6" class="ion-text-center">
       <ion-button (click)="previousPage()" [disabled]="page <= 1">Previous</ion-button>
-      <ion-button (click)="nextPage()">Next</ion-button>
+      <ion-button (click)="nextPage()" [disabled]="(page * itemsPerPage) >= marketData.length">Next</ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

@@ -6,8 +6,7 @@ import { Tab1Page } from './tab1.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { MarketComponentModule } from "../components/market-component/market-component.module";
-
+import { MarketComponentModule } from '../components/market-component/market-component.module';
 @NgModule({
     declarations: [Tab1Page],
     imports: [

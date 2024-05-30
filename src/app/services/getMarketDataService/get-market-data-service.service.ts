@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class GetMarketDataServiceService {
-	private baseUrl = 'https://api.coingecko.com/api/v3/coins/markets?per_page=10';
+	private baseUrl = 'https://api.coingecko.com/api/v3/coins/markets?';
 
 	constructor(private httpClient: HttpClient) { }
 
