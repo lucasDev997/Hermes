@@ -11,7 +11,7 @@ export class MarketComponentComponent implements OnInit {
 	public ids: Array<string> = [];
 	public order: string = '';
 	public sparkline_7_days: boolean = true;
-	public page: string = '1';
+	public page: number = 1;
 	public searchQuery: string = '';
 	public marketData: Array<IMarketData> = [];
 	public chartData: number[] = [];
@@ -25,7 +25,7 @@ export class MarketComponentComponent implements OnInit {
 
 	getMarketData() {
 		const idsArray = this.searchQuery ? this.searchQuery.split(',').map(id => id.trim()) : undefined;
-		this.getMarketDataService.getMarketData('usd', 1, idsArray, this.order, this.sparkline_7_days).subscribe(
+		this.getMarketDataService.getMarketData('usd', this.page, idsArray, this.order, this.sparkline_7_days).subscribe(
 			(data: IMarketData[]) => {
 				this.marketData = data;
 				console.log(this.marketData);
@@ -38,5 +38,14 @@ export class MarketComponentComponent implements OnInit {
 
 	isValuePositive(price: number):boolean{
 		return price > 0 ? true : false
+	}
+
+	nextPage(){
+		this.page++
+		this.getMarketData()
+	}
+	previousPage(){
+		this.page--
+		this.getMarketData()
 	}
 }

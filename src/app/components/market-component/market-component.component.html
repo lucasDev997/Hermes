@@ -24,12 +24,12 @@
             <th>#</th>
             <th>Market Cap</th>
             <th>Price</th>
-            <th>7d%</th>
+            <th>24h%</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let crypto of marketData; index as i">
-            <td>{{i}}</td>
+            <td style="text-align: center;">{{i + 1 + (page - 1) * 10}}</td>
 
             <td>
               <div>
@@ -42,7 +42,9 @@
                 </div>
               </div>
             </td>
-            <td>{{crypto.current_price | currency}}</td>
+            <td>
+              <p>{{crypto.current_price | currency}}</p>
+            </td>
 
             <td>
               <p [ngStyle]="{color: isValuePositive(crypto.price_change_percentage_24h) ? 'green' : 'red'}">{{crypto.price_change_percentage_24h | porcentageValue}}</p>
@@ -52,6 +54,12 @@
           </tr>
         </tbody>
       </table>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-align-items-center ion-justify-content-center" *ngIf="marketData.length > 0">
+    <ion-col size="6" class="ion-text-center">
+      <ion-button (click)="previousPage()" [disabled]="page <= 1">Previous</ion-button>
+      <ion-button (click)="nextPage()">Next</ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

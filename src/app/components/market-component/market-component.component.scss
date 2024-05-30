@@ -1,19 +1,27 @@
 
-td > div{
-    display: flex;
-    align-items: center;
+table{
 
-    div{
-        margin-right: 1rem;
+    width: 90vw;
+    margin: 0 auto;
+    td > div{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    
+        div{
+            margin-right: 1rem;
+            text-align: center;
+        }
+    }
+    
+    td{
         text-align: center;
+        height: 5rem;
+    
+        p{
+            margin: 0;
+            padding: 0;
+        }
     }
-}
-
-td{
-    padding: 1rem 1rem 1rem 0;
-
-    p{
-        margin: 0;
-        padding: 0;
-    }
+    
 }
