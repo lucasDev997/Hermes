@@ -35,4 +35,8 @@ export class MarketComponentComponent implements OnInit {
 			}
 		);
 	}
+
+	isValuePositive(price: number):boolean{
+		return price > 0 ? true : false
+	}
 }

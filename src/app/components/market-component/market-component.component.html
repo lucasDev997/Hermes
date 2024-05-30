@@ -45,7 +45,7 @@
             <td>{{crypto.current_price | currency}}</td>
 
             <td>
-              
+              <p [ngStyle]="{color: isValuePositive(crypto.price_change_percentage_24h) ? 'green' : 'red'}">{{crypto.price_change_percentage_24h | porcentageValue}}</p>
             </td>
 
 

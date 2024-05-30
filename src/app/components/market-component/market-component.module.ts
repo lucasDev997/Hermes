@@ -6,11 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CapilizePipe } from 'src/app/pipes/capilize.pipe';
 import { AbbreviateNumberPipe } from 'src/app/pipes/abreviate-number.pipe';
 import { NgxApexchartsModule } from 'ngx-apexcharts';
+import { PorcentageValuePipe } from 'src/app/pipes/porcentage-value.pipe';
 
 
 
 @NgModule({
-	declarations: [MarketComponentComponent, CapilizePipe, AbbreviateNumberPipe],
+	declarations: [MarketComponentComponent, CapilizePipe, AbbreviateNumberPipe, PorcentageValuePipe],
 	imports: [
 		CommonModule,
 		IonicModule,
