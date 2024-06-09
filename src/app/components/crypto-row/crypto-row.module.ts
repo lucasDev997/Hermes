@@ -9,7 +9,7 @@ import { PorcentageValuePipe } from 'src/app/pipes/porcentage-value.pipe';
 
 
 @NgModule({
-  declarations: [CryptoRowComponent, AbbreviateNumberPipe, CapilizePipe, PorcentageValuePipe],
+  declarations: [CryptoRowComponent, AbbreviateNumberPipe, PorcentageValuePipe, CapilizePipe],
   imports: [
     CommonModule,
     IonicModule,

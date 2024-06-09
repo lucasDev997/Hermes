@@ -3,18 +3,17 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { MarketComponentComponent } from './market-component.component';
 import { FormsModule} from '@angular/forms';
-import { CapilizePipe } from 'src/app/pipes/capilize.pipe';
-import { AbbreviateNumberPipe } from 'src/app/pipes/abreviate-number.pipe';
-import { PorcentageValuePipe } from 'src/app/pipes/porcentage-value.pipe';
+import { CryptoRowModule } from '../crypto-row/crypto-row.module';
 
 
 
 @NgModule({
-    declarations: [MarketComponentComponent, CapilizePipe, AbbreviateNumberPipe, PorcentageValuePipe],
+    declarations: [MarketComponentComponent],
     imports: [
         CommonModule,
         IonicModule,
-        FormsModule
+        FormsModule,
+        CryptoRowModule
     ],
     exports: [MarketComponentComponent]
 })

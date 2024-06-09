@@ -1,4 +1,4 @@
-<!-- <tr>
+<tr>
   <td>{{index + 1 + (page - 1) * itemsPerPage}}</td>
   <td>
     <div>
@@ -11,8 +11,8 @@
       </div>
     </div>
   </td>
-  <td>{{crypto.current_price | currency}}</td>
+  <td class="crypto-price">{{crypto.current_price | currency}}</td>
   <td>
     <p [ngStyle]="{color: isValuePositive(crypto.price_change_percentage_24h) ? 'green' : 'red'}">{{crypto.price_change_percentage_24h | porcentageValue}}</p>
   </td>
-</tr> -->
+</tr>

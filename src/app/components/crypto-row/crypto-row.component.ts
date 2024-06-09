@@ -8,10 +8,10 @@ import { IMarketData } from 'src/app/types/marketData.type';
 })
 export class CryptoRowComponent  implements OnInit {
 
-  /* @Input() crypto: IMarketData;
+  @Input() crypto: IMarketData;
   @Input() index: number;
   @Input() page: number;
-  @Input() itemsPerPage: number; */
+  @Input() itemsPerPage: number;
 
   constructor() { }
 
