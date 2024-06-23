@@ -26,16 +26,7 @@ export class LoginPage{
       throw error;
     }
   }
-
-  async loginWithGoogle(){
-    try {
-      await this.loginService.loginWithGoogle()
-      this.router.navigate(['tab1'])
-    } catch (error) {
-      throw error;
-    }
-  }
-
+  
   navigateToRecoverPassword(){
     this.router.navigate(['/recover-password'])
   }

@@ -1,5 +1,7 @@
 {
   "name": "hermes",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

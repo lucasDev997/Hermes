@@ -6,17 +6,17 @@ import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
-import { NewsComponentModule } from '../components/newsComponent/news-component/news-component.module';
+import { DevComponentModule } from "../components/devComponent/dev-component/dev-component.module";
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    ExploreContainerComponentModule,
-    Tab3PageRoutingModule,
-    NewsComponentModule
-  ],
-  declarations: [Tab3Page]
+    declarations: [Tab3Page],
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        ExploreContainerComponentModule,
+        Tab3PageRoutingModule,
+        DevComponentModule
+    ]
 })
 export class Tab3PageModule {}

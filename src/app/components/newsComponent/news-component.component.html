@@ -1,0 +1,15 @@
+<div *ngIf="cryptoNews.length > 0">
+  <div *ngFor="let newsItem of cryptoNews" class="news-item">
+    <h3>{{ newsItem.title }}</h3>
+    <p>{{ newsItem.description }}</p>
+    <a [href]="newsItem.link" target="_blank">Read more</a>
+    <div class="news-meta">
+      <img *ngIf="newsItem.source_icon" [src]="newsItem.source_icon" alt="{{ newsItem.source_id }} icon">
+      <span>{{ newsItem.pubDate | date: 'medium' }}</span>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="cryptoNews.length === 0">
+  <p>No news available.</p>
+</div>

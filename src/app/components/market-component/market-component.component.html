@@ -18,14 +18,6 @@
   <ion-row *ngIf="paginatedData.length > 0">
     <ion-col size="12">
       <table>
-        <!-- <thead>
-          <tr>
-            <th>#</th>
-            <th>Market Cap</th>
-            <th>Price</th>
-            <th>7d%</th>
-          </tr>
-        </thead> -->
         <tbody>
           <tr *ngFor="let crypto of paginatedData; index as i">
             <app-crypto-row [crypto]="crypto" [index]="i" [page]="page" [itemsPerPage]="itemsPerPage"></app-crypto-row>

@@ -9,43 +9,64 @@ import { RegisterService } from 'src/app/services/register-service.service';
 })
 export class RegisterPage {
 
-  public email:string = ''
-  public password:string = ''
-  public name:string = ''
-
-  public errorMessage: any = ''
+  public email: string = '';
+  public password: string = '';
+  public name: string = '';
+  public errorMessage: any = '';
 
   constructor(
     private registerService: RegisterService,
-    private router:Router
-  ){ }
+    private router: Router
+  ) { }
 
-  async register(){
+  async register() {
     try {
       await this.registerService.register(this.email, this.password, this.name);
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     } catch (error) {
-      throw error
+      this.handleError(error);
     }
   }
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
 
-  async googleSignIn(){
-    try {
-      await this.registerService.googleSignIn(this.name)
-      this.router.navigate(['/tabs/tab1/'])
-    } catch (error) {
-      console.error("Error during Google sign-in", error);
-      
+  clearInputs() {
+    this.email = '';
+    this.password = '';
+    this.name = '';
+  }
+
+  private handleError(error: any) {
+    this.errorMessage = 'An error occurred!';
+    if (error.code) {
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          this.errorMessage = 'The email address is already in use by another account.';
+          break;
+        case 'auth/invalid-email':
+          this.errorMessage = 'The email address is not valid.';
+          break;
+        case 'auth/operation-not-allowed':
+          this.errorMessage = 'Email/password accounts are not enabled.';
+          break;
+        case 'auth/weak-password':
+          this.errorMessage = 'The password is too weak.';
+          break;
+        case 'auth/user-disabled':
+          this.errorMessage = 'The user account has been disabled by an administrator.';
+          break;
+        case 'auth/user-not-found':
+          this.errorMessage = 'There is no user corresponding to the given email.';
+          break;
+        case 'auth/wrong-password':
+          this.errorMessage = 'The password is invalid for the given email.';
+          break;
+        default:
+          this.errorMessage = 'An unknown error occurred!';
+          break;
+      }
     }
-  }
-
-  navigateToLogin(){
-    this.router.navigate(['/login'])
-  }
-
-  clearInputs(){
-    this.email = ''
-    this.password = ''
-    this.name = ''
+    console.error(this.errorMessage);
   }
 }

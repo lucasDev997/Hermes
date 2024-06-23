@@ -19,16 +19,6 @@ export class LoginServicesService {
     }
   }
 
-  public async loginWithGoogle(){
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      const result = await this.afAuth.signInWithPopup(provider)
-      return result;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   public async logout(){
     try {
       await this.afAuth.signOut()

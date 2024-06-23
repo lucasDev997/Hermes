@@ -14,10 +14,6 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./pages/register/register/register.module').then( m => m.RegisterPageModule)
   },
-  {
-    path: 'recover-password',
-    loadChildren: () => import('./pages/recoverPassword/recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule)
-  },
 ];
 @NgModule({
   imports: [

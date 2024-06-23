@@ -3,38 +3,42 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {}
+  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {
+    // Handle the redirect result
+    this.afAuth.getRedirectResult().then(result => {
+      if (result.user) {
+        this.setUserData(result.user, 'Google User');
+      }
+    }).catch(error => {
+      console.error("Error handling redirect result", error);
+    });
+  }
 
   async register(email: string, password: string, name: string) {
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
-      if (result.user === null) {
-        throw new Error("There has been an error with the registration")
+      if (!result.user) {
+        throw new Error("There has been an error with the registration");
       }
-      await this.setUserData(result.user, name)
+      await this.setUserData(result.user, name);
       return result;
-    } catch (error:any) {
+    } catch (error: any) {
+      this.handleError(error);
       throw error;
     }
   }
 
-  async googleSignIn(name: string) {
+  async googleSignIn() {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
-      const result = await this.afAuth.signInWithPopup(provider);
-      if (result.user) {
-        await this.setUserData(result.user, name);
-      } else {
-        throw new Error('Google sign-in failed');
-      }
-      return result;
+      await this.afAuth.signInWithRedirect(provider);
     } catch (error) {
       console.error("Error during Google sign-in", error);
+      this.handleError(error);
       throw error;
     }
   }
@@ -44,7 +48,7 @@ export class RegisterService {
     const userData = {
       uid: user.uid,
       email: user.email,
-      name: name
+      name: name || 'Google User' // Use a default name if not provided
     };
     return userRef.set(userData, { merge: true });
   }
@@ -79,5 +83,6 @@ export class RegisterService {
           break;
       }
     }
+    console.error(errorMessage);
   }
 }
